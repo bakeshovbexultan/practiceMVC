@@ -21,13 +21,11 @@ class UsersController {
 	}
 
 	public function listOfUsers() {
-
 	    if (!$this->auth->isLoggedIn()) {
 	        header('Location: /page_login');
 	    }
 	    $isAdmin = $this->auth->hasRole(\Delight\Auth\Role::ADMIN);
 	    $editorName = $this->auth->getUsername();
-
 		$users = $this->qb->getAll('users');
 		echo $this->templates->render('users', ['users' => $users, 'isAdmin' => $isAdmin, 'editorName' => $editorName]);
 	}
